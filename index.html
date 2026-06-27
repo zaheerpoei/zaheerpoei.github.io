@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Expense Manager</title>
+<meta name="description" content="Smart Expense Manager — an offline-first expense tracker built for Pakistan. Track spending in PKR, scan receipts, stay private.">
+<style>
+  :root{
+    --green-deep:#0B6B42;
+    --green:#1B8A57;
+    --green-bright:#26C26B;
+    --ink:#0a2a1c;
+    --paper:#f3faf5;
+    --mist:#dff0e6;
+    --line:rgba(11,107,66,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 500px at 80% -10%, var(--mist), transparent 60%),
+      var(--paper);
+    line-height:1.55;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+  }
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:clamp(28px,6vw,72px) 24px}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:clamp(40px,9vw,84px)}
+  .mark{
+    width:56px;height:56px;flex:0 0 56px;border-radius:14px;
+    background:linear-gradient(145deg,var(--green-bright),var(--green-deep));
+    color:#fff;display:grid;place-items:center;
+    font-weight:800;font-size:24px;letter-spacing:-.5px;
+    box-shadow:0 6px 18px rgba(11,107,66,.28);
+  }
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.2px}
+  .brand small{display:block;font-weight:500;font-size:12.5px;color:var(--green);letter-spacing:.02em}
+  h1{
+    font-size:clamp(30px,7vw,52px);
+    line-height:1.05;letter-spacing:-1.2px;font-weight:800;
+    margin-bottom:20px;max-width:14ch;
+  }
+  h1 .accent{color:var(--green)}
+  .lede{font-size:clamp(16px,2.4vw,19px);max-width:52ch;color:#244c39}
+  .meta{
+    margin-top:clamp(36px,8vw,64px);
+    padding-top:24px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;
+    font-size:14.5px;
+  }
+  .meta a{color:var(--green-deep);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--green-bright);padding-bottom:1px}
+  .meta a:hover{color:var(--green)}
+  .meta a:focus-visible{outline:3px solid var(--green-bright);outline-offset:3px;border-radius:3px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .tag{font-size:12.5px;font-weight:600;color:var(--green-deep);background:var(--mist);padding:5px 11px;border-radius:999px}
+  footer{margin-top:auto}
+  .foot{max-width:760px;margin:0 auto;padding:20px 24px;color:#5a7a6a;font-size:13px;border-top:1px solid var(--line)}
+  @media (prefers-reduced-motion:no-preference){
+    .mark{transition:transform .25s ease}
+    .mark:hover{transform:translateY(-2px) rotate(-3deg)}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mark" aria-hidden="true">Rs</div>
+      <div class="brand">Smart Expense Manager<small>Personal finance · Pakistan</small></div>
+    </header>
+
+    <main>
+      <h1>Track your spending, <span class="accent">your way.</span></h1>
+      <p class="lede">An offline-first expense tracker built for Pakistan. Log expenses in rupees, scan receipts to fill in the details, and keep your records on your own device.</p>
+
+      <div class="tags">
+        <span class="tag">Works offline</span>
+        <span class="tag">In PKR</span>
+        <span class="tag">Receipt scanning</span>
+        <span class="tag">No account needed</span>
+      </div>
+
+      <div class="meta">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="mailto:zaheerpoei@gmail.com">Contact</a>
+        <span>Available on Google Play</span>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="foot">© <span id="y"></span> SharpEdges. All rights reserved.</div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
