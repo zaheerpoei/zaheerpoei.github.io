@@ -435,6 +435,9 @@ main > section {
   border: 1px solid var(--line);
   overflow: hidden;
 }
+.module-glyph[hidden] {
+  display: none;
+}
 .module-card[data-layer="presentation"] .module-glyph--fallback { color: var(--presentation); border-color: var(--presentation); }
 .module-card[data-layer="domain"] .module-glyph--fallback { color: var(--domain); border-color: var(--domain); }
 .module-card[data-layer="data"] .module-glyph--fallback { color: var(--data); border-color: var(--data); }
