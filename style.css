@@ -93,9 +93,23 @@ h1, h2, h3, h4 {
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+}
+.nav-mark {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--presentation-soft), var(--domain-soft) 50%, var(--data-soft));
+  border: 1px solid var(--line);
 }
 
 .nav-links {
