@@ -66,8 +66,9 @@ const additional = [
     stack: ["Java"],
     layer: "data",
     desc: "Customer-facing companion to SalonToday — browse salons, book slots, and track appointment history.",
-    link: "https://play.google.com/store/apps/details?id=com.salontoday.client.pk",
-    icon: "icons/salontoday-client.png"
+    role: "Listing not found — package ID may be outdated",
+    link: null,
+    icon: null
   },
   {
     name: "Find A Doctor",
@@ -75,8 +76,9 @@ const additional = [
     stack: ["Java", "Kotlin"],
     layer: "presentation",
     desc: "Directory and booking app connecting patients with local doctors and clinics — search by specialty, book, and manage visits.",
-    link: "https://play.google.com/store/apps/details?id=com.findadoctor.pk",
-    icon: "icons/find-a-doctor.png"
+    role: "Package ID now resolves to a different app — check listing",
+    link: null,
+    icon: null
   },
   {
     name: "Vevue",
@@ -84,8 +86,9 @@ const additional = [
     stack: ["Kotlin"],
     layer: "domain",
     desc: "Social video-sharing app rewarding users for authentic short-form content.",
-    link: "https://play.google.com/store/apps/details?id=com.vevue.powehi",
-    icon: "icons/vevue.png"
+    role: "Listing not found — package ID may be outdated",
+    link: null,
+    icon: null
   },
   {
     name: "Photo Vault",
@@ -112,7 +115,7 @@ const additional = [
     layer: "domain",
     desc: "Mobile banking app for JS Bank customers — account access, transfers and bill payments.",
     link: "https://play.google.com/store/apps/details?id=com.JSBL.bank",
-    icon: "icons/js-bank.png"
+    icon: "https://play-lh.googleusercontent.com/omYu1ZZncjpl2rdavamKqg4fGainDJDd6J9ye92msVxogg5TLXAT7ZrHs9BSbsyVV8cTxoAJ3WdWnjhUWJ-VCw=s256"
   },
   {
     name: "Zindigi",
@@ -121,7 +124,7 @@ const additional = [
     layer: "data",
     desc: "All-in-one digital wallet and finance app — payments, transfers and bill pay.",
     link: "https://play.google.com/store/apps/details?id=com.wallet.zindigi",
-    icon: "icons/zindigi.png"
+    icon: "https://play-lh.googleusercontent.com/tW-Ona2dMMBoxEcq0TaqB-4aCtc6JZMewbzpPydFcJQdLBGGI9xHLp4Jyzfr_AOZHt79SIJBnowJeiu18XubwQ=s256"
   }
 ];
 
@@ -134,9 +137,21 @@ const independent = [
     desc: "Offline-first expense tracker built for Pakistan — log spending in PKR, scan receipts to auto-fill details, no account or cloud sync required.",
     role: "Founder · SharpEdges",
     link: "smart-expense-manager.html",
-    linkLabel: "View app page"
+    linkLabel: "View app page",
+    icon: "https://play-lh.googleusercontent.com/nhsQsRFNhDNb06Q8cCw_Gl0rsfx7M-UsE7Ap6mc-K4pvqvAXIKjC2jtQAAUm4uGO-2klZLf1n7xtsowSz87P4Q=s256"
   }
 ];
+
+// If a dropped-in icon file is missing or fails to load, hide the broken
+// <img> and reveal the initials glyph sitting right next to it in the DOM.
+function handleIconError(imgEl) {
+  const wrap = imgEl.closest(".module-glyph-wrap");
+  if (!wrap) return;
+  const iconSpan = wrap.querySelector(".module-glyph--icon");
+  const fallbackSpan = wrap.querySelector(".module-glyph--fallback");
+  if (iconSpan) iconSpan.hidden = true;
+  if (fallbackSpan) fallbackSpan.hidden = false;
+}
 
 function initials(name) {
   return name
@@ -154,17 +169,18 @@ function cardHTML(app) {
   const linkLabel = app.linkLabel || "View on Play Store";
   const linkBtn = app.link
     ? `<a class="module-link" href="${app.link}" ${isInternal ? "" : 'target="_blank" rel="noopener"'}>${linkLabel} <span aria-hidden="true">↗</span></a>`
-    : `<span class="module-link module-link--disabled">Enterprise / private build</span>`;
+    : `<span class="module-link module-link--disabled">Listing unavailable</span>`;
 
   // Real icon if one's been dropped into /icons; falls back to the initials
   // glyph automatically if the field is empty OR the image fails to load.
-  const glyph = `<span class="module-glyph module-glyph--fallback">${initials(app.name)}</span>`;
+  // Both nodes are rendered up front (no HTML built inside an attribute string)
+  // and the fallback simply gets shown if the image errors out.
   const iconHTML = app.icon
-    ? `<span class="module-glyph module-glyph--icon">
-         <img src="${app.icon}" alt="" loading="lazy"
-              onerror="this.parentElement.outerHTML = '${glyph.replace(/'/g, "\\'")}';">
+    ? `<span class="module-glyph-wrap">
+         <span class="module-glyph module-glyph--icon"><img src="${app.icon}" alt="" loading="lazy" onerror="handleIconError(this)"></span>
+         <span class="module-glyph module-glyph--fallback" hidden>${initials(app.name)}</span>
        </span>`
-    : glyph;
+    : `<span class="module-glyph-wrap"><span class="module-glyph module-glyph--fallback">${initials(app.name)}</span></span>`;
 
   return `
     <article class="module-card" data-layer="${app.layer}">
