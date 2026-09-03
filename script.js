@@ -139,6 +139,17 @@ const independent = [
     link: "smart-expense-manager.html",
     linkLabel: "View app page",
     icon: "https://play-lh.googleusercontent.com/nhsQsRFNhDNb06Q8cCw_Gl0rsfx7M-UsE7Ap6mc-K4pvqvAXIKjC2jtQAAUm4uGO-2klZLf1n7xtsowSz87P4Q=s256"
+  },
+  {
+    name: "PDF Toolbox",
+    pkg: ":pdf-toolbox",
+    stack: ["Kotlin", "Jetpack Compose"],
+    layer: "domain",
+    desc: "Offline PDF toolkit — merge, split, extract, organize, compress, and convert between images and PDF. Every tool runs on-device; files are never uploaded.",
+    role: "Founder · SharpEdges",
+    link: "pdf-toolbox.html",
+    linkLabel: "View app page",
+    icon: "icons/pdftoolbox.png"
   }
 ];
 
